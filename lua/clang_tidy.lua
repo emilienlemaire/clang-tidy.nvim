@@ -121,12 +121,14 @@ local clang_tidy = Job:new{
         end
     end,
     on_exit = vim.schedule_wrap(function()
-        local lsp_diags = {}
-        for _, v in ipairs(clang_tidy_diags) do
-            local lsp_diag = to_lsp_diag(v)
-            table.insert(lsp_diags, lsp_diag)
+        if clang_tidy_diags then
+            local lsp_diags = {}
+            for _, v in ipairs(clang_tidy_diags) do
+                local lsp_diag = to_lsp_diag(v)
+                table.insert(lsp_diags, lsp_diag)
+            end
+            publish_diagnostics(lsp_diags)
         end
-        publish_diagnostics(lsp_diags)
     end)
 }
 
