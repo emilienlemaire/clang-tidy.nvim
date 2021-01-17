@@ -104,6 +104,13 @@ local publish_diagnostics = function(diagnostics)
 end
 
 local clang_tidy_diags = {}
+local old_diags = {}
+
+function Set (list)
+  local set = {}
+  for _, l in ipairs(list) do set[l] = true end
+  return set
+end
 
 local clang_tidy = Job:new{
     command= "clang-tidy",
@@ -128,11 +135,21 @@ local clang_tidy = Job:new{
                 table.insert(lsp_diags, lsp_diag)
             end
             publish_diagnostics(lsp_diags)
+            old_diags = lsp_diags
+            clang_tidy_diags = {}
         end
     end)
 }
 
+local delete_old_diags = function()
+    local buf_nr = vim.fn.bufnr()
+    local client_id = vim.lsp.buf_get_clients()[1]['id']
+    vim.lsp.diagnostic.clear(buf_nr, client_id)
+end
+
 return {
-    clang_tidy = clang_tidy
+    clang_tidy = clang_tidy,
+    old_diags = old_diags,
+    delete_old_diags = delete_old_diags
 }
 
