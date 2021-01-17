@@ -105,7 +105,7 @@ end
 
 local clang_tidy_diags = {}
 
-local j = Job:new{
+local clang_tidy = Job:new{
     command= "clang-tidy",
     args= args,
     cwd = vim.loop.cwd(),
@@ -130,6 +130,5 @@ local j = Job:new{
     end)
 }
 
-j:start()
-
+return clang_tidy
 
