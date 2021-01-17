@@ -130,5 +130,7 @@ local clang_tidy = Job:new{
     end)
 }
 
-return clang_tidy
+return {
+    clang_tidy = clang_tidy
+}
 
