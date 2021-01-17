@@ -1,4 +1,4 @@
 augroup clang-tidy
     au!
-    au BufWritePre *.cpp :lua require('clang_tidy').clang-tidy:start()<cr>
+    au BufWritePre,BufEnter *.cpp :lua require('clang_tidy').clang_tidy:start()<cr>
 augroup END
