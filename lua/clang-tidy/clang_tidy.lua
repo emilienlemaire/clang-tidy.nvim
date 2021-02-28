@@ -9,7 +9,7 @@ function ClangTidy:new(opts)
   local this = {
     cmd = opts.cmd,
     args = opts.args,
-    cwd = opts.cwd,
+    cwd = opts.cwd(),
     checks = opts.checks,
     ignore_severity = opts.ignore_severity,
     diagnostics = {},
