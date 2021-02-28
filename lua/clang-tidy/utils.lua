@@ -18,9 +18,9 @@ function M.diag_to_table(str)
 
     local idx_msg = string.find(str_no_col, ":")
     local severity = string.sub(str_no_col, 1, idx_msg - 1)
-    local str_no_sev = string.sub(str_no_col, idx_msg + 2) -- ignore with space before message
+    local str_no_sev = string.sub(str_no_col, idx_msg + 2) -- ignore white space before message
 
-    local idx_check = string.find(str_no_sev, '%[%l')
+    local idx_check = string.find(str_no_sev, '%[%l+')
     local msg = nil
     local str_no_msg = nil
 
@@ -30,6 +30,7 @@ function M.diag_to_table(str)
     if idx_check then
       msg = string.sub(str_no_sev, 1, idx_check - 2)
       str_no_msg = string.sub(str_no_sev, idx_check + 1)
+      print(str_no_msg)
       idx_end = string.find(str_no_msg, '%]')
       check = string.sub(str_no_msg, 1, idx_end - 1)
     else
