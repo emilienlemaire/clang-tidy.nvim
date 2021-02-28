@@ -30,7 +30,6 @@ function M.diag_to_table(str)
     if idx_check then
       msg = string.sub(str_no_sev, 1, idx_check - 2)
       str_no_msg = string.sub(str_no_sev, idx_check + 1)
-      print(str_no_msg)
       idx_end = string.find(str_no_msg, '%]')
       check = string.sub(str_no_msg, 1, idx_end - 1)
     else
@@ -86,13 +85,12 @@ end
 function M.hash(diagnostic)
   if not diagnostic.range then
     local diagnostics = require("clang-tidy.diagnostics")
-    error("____FAIL____")
-    print(vim.inspect(diagnostic))
     diagnostic = diagnostics.to_lsp_diag(diagnostic)
-    print("___REPAIR___")
-    print(vim.inspect(diagnostic))
   end
   local str = diagnostic.code
+  if not str then
+    print(vim.inspect(diagnostic))
+  end
   local start = diagnostic.range.start
   local end_ = diagnostic.range['end']
   str = str .. "." .. start.line .. ":" ..start.character

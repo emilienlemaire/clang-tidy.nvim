@@ -43,8 +43,6 @@ function M.publish_diagnostics(diagnostics, clang_tidy)
   for i, v in ipairs(diagnostics) do
     local hash = utils.hash(v)
     if old_table[hash] then
-      print("___OLD_DIAGS____")
-      print(vim.inspect(v))
       table.remove(diagnostics, i)
     end
   end
