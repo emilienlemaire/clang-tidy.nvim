@@ -7,7 +7,7 @@ function M.stdout_handler(clang_tidy)
   return (function(error, data)
     assert(not error, error)
     local diag = utils.diag_to_table(data)
-    if diag and diag['severity'] ~= 'note' then
+    if diag and not clang_tidy.ignore_severity[diag.severity] then
       table.insert(clang_tidy.diagnostics, diagnostics.to_lsp_diag(diag))
     end
   end)

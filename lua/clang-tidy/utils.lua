@@ -69,7 +69,7 @@ function M.merge_opts(user_opts)
       '*'
     },
     args = {},
-    cwd = vim.loop.cwd(),
+    cwd = vim.loop.cwd,
     ingnore_severity = {
       'note'
     }
