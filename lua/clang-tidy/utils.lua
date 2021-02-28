@@ -20,7 +20,7 @@ function M.diag_to_table(str)
     local severity = string.sub(str_no_col, 1, idx_msg - 1)
     local str_no_sev = string.sub(str_no_col, idx_msg + 2) -- ignore white space before message
 
-    local idx_check = string.find(str_no_sev, '%[%l+')
+    local idx_check = string.find(str_no_sev, '%[[%l%-]+%]$')
     local msg = nil
     local str_no_msg = nil
 
