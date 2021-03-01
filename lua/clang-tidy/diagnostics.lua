@@ -3,7 +3,7 @@ local M = {}
 
 function M.to_lsp_diag(diag)
   return {
-    code = diag['check'],
+    code = diag['check'] or 'note',
     message = diag['message'],
     range = {
       start = {

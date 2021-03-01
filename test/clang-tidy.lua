@@ -7,4 +7,29 @@ R = function(name)
   return require(name)
 end
 
-R('clang-tidy').setup()
+R('clang-tidy').setup({
+  checks = {
+    '-*',
+    'bugprone-*',
+    'cert-*',
+    'clang-analyzer-*',
+    'cppcoreguidelines-*',
+    'hicpp-*',
+    'portability-*',
+    'misc-*',
+    'modernize-*',
+    'performance-*',
+    'readability-*',
+    'fushia-multiple-inheritance',
+    'fuchsia-statically-constructed-objects',
+    'fuchsia-trailing-return',
+    'google-build-using-namespace',
+    'google-default-arguments',
+    'google-runtime-int',
+    'llvm-namespace-comment',
+    'llvm-prefer-isa-or-dyn-cast-in-conditionals',
+    'llvm-twine-local',
+    '-modernize-use-trailing-return-type',
+    '-misc-no-recursion'
+  }
+})
