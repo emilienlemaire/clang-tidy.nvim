@@ -7,7 +7,7 @@ This plugin requires `plenary.nvim`
 You can use your favorite plugin manager to install this plugin.
 With `packer.nvim` :
 ```lua
-use 'nvim-lua/pleanry.nvim'
+use 'nvim-lua/plenary.nvim'
 use 'emilienlemaire/clang-tidy.nvim'
 ```
 
